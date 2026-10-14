@@ -1,10 +1,5 @@
 from Produto import Produto
 from Cliente import Cliente
-from Pedido import Pedido
-from ItemPedido import ItemPedido
-from datetime import datetime
-
-
 listaProdutos = [] 
 listaClientes = []
 listaPedidos = []
@@ -156,44 +151,6 @@ while(True):
         menuClientes()
     elif escolha=="2":
         menuProdutos()
-
-
-    elif escolha=="3":
-        time = str(datetime.today())
-        data = time[0:10]
-        hora = time[11:16]
-        
-        cpf = input("Digite o CPF do Clinte:") 
-        
-        objCliente, pos = buscarCliente(cpf)
-        
-        if(objCliente is None):
-            print("Cliente Não Encontrado!")
-        else:
-            tipoPGT = input("Informe o Tipo de Pagamento:")
-            numPedido=len(listaPedidos)+10
-            lisItens = []
-
-            while(True):
-                codProduto = input("Informe o Cod. do Produto ou 0 para finalizar:")
-                if codProduto == "0":
-                    break
-                objProduto, i = buscarProduto(codProduto)
-                if(objProduto is None):
-                    print("Produto Não Encontrado!")
-                else:
-                    qtd = input("Quantidade:")
-                    obs = input("Observação:")
-                    desconto = float(input("Desconto:"))
-                    
-                    objItemPedido = ItemPedido(objProduto, qtd, obs, desconto)
-                    
-                    lisItens.append(objItemPedido)
-                    objetoPedido = Pedido(numPedido, data, hora,tipoPGT, objCliente, lisItens)
-
-                    objetoPedido.imprimir()
-                    listaPedidos.append(objetoPedido)
-            
     else:
          print("Opção Inválida!")
 
